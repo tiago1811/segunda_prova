@@ -36,19 +36,19 @@ class _TelaHomeState extends State<TelaHome> {
     ),
     Membro.withID(
       id: 2,
-      nome: "Membro 2",
+      nome: "Israel Silvestre",
       funcao: "Missionário",
       imagePath: "caminho/da/imagem2.jpg",
     ),
     Membro.withID(
       id: 3,
-      nome: "Membro 3",
+      nome: "Thiago de Melo",
       funcao: "Líder de Jovens",
       imagePath: "caminho/da/imagem3.jpg",
     ),
     Membro.withID(
       id: 4,
-      nome: "Membro 4",
+      nome: "Taniro Chacon",
       funcao: "Diácono",
       imagePath: "caminho/da/imagem4.jpg",
     ),
