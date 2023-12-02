@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:segunda_prova/Bd/model.dart';
+import 'package:segunda_prova/Screens/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: TelaHome(),
+      home: LoginScreen(),
     );
   }
 }
@@ -22,19 +24,38 @@ class TelaHome extends StatefulWidget {
 }
 
 class _TelaHomeState extends State<TelaHome> {
-  // Lista simulada de membros
-  List<String> listaMembros = [
-    "Membro 1",
-    "Membro 2",
-    "Membro 3",
-    "Membro 4",
+  List<Membro> listaMembros = [
+    Membro.withID(
+      id: 1,
+      nome: "Edson Moreira",
+      funcao: "Pastor",
+      imagePath: "edson.png",
+    ),
+    Membro.withID(
+      id: 2,
+      nome: "Membro 2",
+      funcao: "Missionário",
+      imagePath: "caminho/da/imagem2.jpg",
+    ),
+    Membro.withID(
+      id: 3,
+      nome: "Membro 3",
+      funcao: "Líder de Jovens",
+      imagePath: "caminho/da/imagem3.jpg",
+    ),
+    Membro.withID(
+      id: 4,
+      nome: "Membro 4",
+      funcao: "Diácono",
+      imagePath: "caminho/da/imagem4.jpg",
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tela Home"),
+        title: Text("GERENCIAMENTO DE MEMBROS"),
       ),
       body: Container(
         child: ListView.builder(
@@ -43,10 +64,10 @@ class _TelaHomeState extends State<TelaHome> {
             return Card(
               margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: ListTile(
-                title: Text(listaMembros[index]),
-                subtitle: Text("Pastor"), // Exemplo de mensagem
+                title: Text(listaMembros[index].nome),
+                subtitle: Text(listaMembros[index].funcao),
                 leading: CircleAvatar(
-                  child: Text(listaMembros[index][0]),
+                  backgroundImage: AssetImage(listaMembros[index].imagePath),
                 ),
                 onTap: () {
                   // Adicione a lógica de navegação ou ação ao tocar no card aqui
@@ -60,7 +81,14 @@ class _TelaHomeState extends State<TelaHome> {
         onPressed: () {
           // Adiciona um novo membro à lista quando o botão é pressionado
           setState(() {
-            listaMembros.add("Novo Membro ${listaMembros.length + 1}");
+            listaMembros.add(
+              Membro.withID(
+                id: listaMembros.length + 1,
+                nome: "Novo Membro ${listaMembros.length + 1}",
+                funcao: "Função",
+                imagePath: "caminho/da/nova/imagem.jpg",
+              ),
+            );
           });
         },
         child: Icon(Icons.add),

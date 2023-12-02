@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:segunda_prova/Screens/main.dart';
+
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,9 +14,9 @@ class LoginScreen extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.grey.shade900, // Cor do topo
-                  Colors.grey.shade800, // Cor do meio
-                  Colors.grey.shade700, // Cor do fundo
+                  Colors.grey.shade900,
+                  Colors.grey.shade800,
+                  Colors.grey.shade700,
                 ],
               ),
             ),
@@ -24,19 +26,19 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Adicione outros widgets conforme necessário
-                // ...
-                // Botão "ENTRAR"
                 SizedBox(
-                  width: 200, // Ajuste o tamanho conforme necessário
-                  height: 50, // Ajuste o tamanho conforme necessário
+                  width: 200,
+                  height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.grey[800], // Cor de fundo cinza escuro
-                      onPrimary: Colors.white, // Cor do texto branco
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.grey[800],
                     ),
                     onPressed: () {
-                      // Adicione a lógica para o botão "ENTRAR" aqui
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TelaHome()),
+                      );
                     },
                     child: Text('ENTRAR'),
                   ),
