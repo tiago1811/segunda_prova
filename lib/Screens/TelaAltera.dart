@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:segunda_prova/domain/membro.dart';
+import 'package:segunda_prova/helpers/membro_helper.dart';
+
 
 class TelaAltera extends StatefulWidget {
   final Membro membro;
@@ -14,9 +16,10 @@ class _TelaAlteraState extends State<TelaAltera> {
   late TextEditingController _nomeController;
   late TextEditingController _idadeController;
   late TextEditingController _emailController;
-  late TextEditingController _estadoCivilController;
   late TextEditingController _funcaoController;
   late TextEditingController _imagePathController;
+
+  final _membroHelper = MembroHelper();
 
   @override
   void initState() {
@@ -82,15 +85,13 @@ class _TelaAlteraState extends State<TelaAltera> {
       id: widget.membro.id,
       nome: _nomeController.text,
       idade: _idadeController.text,
-      email: _emailController.text
-      estadoCivil: _estadoCivilController.text,
-      funcao: _funcaoController.text,
-      //imagePath: _imagePathController.text,
+      email: _emailController.text,
+      estadoCivil: widget.membro.estadoCivil,
+      funcao: widget.membro.funcao,
     );
 
-    // Aqui você deve implementar a lógica para salvar as alterações no banco de dados
+    _membroHelper.updateMembro(membroAlterado);
 
-    // Exibindo SnackBar
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Membro alterado com sucesso!'),

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:segunda_prova/domain/membro.dart';
 import 'package:segunda_prova/Screens/main.dart';
+import 'package:segunda_prova/helpers/membro_helper.dart';
+
 
 class TelaCadastro extends StatelessWidget {
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _funcaoController = TextEditingController();
   final TextEditingController _imagePathController = TextEditingController();
+  final _membroHelper = MembroHelper();
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +60,13 @@ class TelaCadastro extends StatelessWidget {
   }
 
   void _salvarMembro(BuildContext context) {
-    // Substitua essa lógica pela implementação real de salvamento no banco de dados
     Membro novoMembro = Membro(
       nome: _nomeController.text,
       funcao: _funcaoController.text,
-     // imagePath: _imagePathController.text,
     );
 
-    // Aqui você deve implementar a lógica para salvar o membro no banco de dados
+    _membroHelper.saveMembro(novoMembro);
 
-    // Exibindo SnackBar
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Membro cadastrado com sucesso!'),
