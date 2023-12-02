@@ -28,7 +28,6 @@ class TelaHome extends StatefulWidget {
 }
 
 class _TelaHomeState extends State<TelaHome> {
-<<<<<<< HEAD
   late Future<List<Membro>> _listaMembros;
   @override
   void initState() {
@@ -39,34 +38,6 @@ class _TelaHomeState extends State<TelaHome> {
   Future<List<Membro>> _carregarMembros() async {
     return await MembroHelper().getAll();
   }
-=======
-  List<Membro> listaMembros = [
-    Membro.withID(
-      id: 1,
-      nome: "Edson Moreira",
-      funcao: "Pastor",
-      imagePath: "edson.png",
-    ),
-    Membro.withID(
-      id: 2,
-      nome: "Israel Silvestre",
-      funcao: "Missionário",
-      imagePath: "caminho/da/imagem2.jpg",
-    ),
-    Membro.withID(
-      id: 3,
-      nome: "Thiago de Melo",
-      funcao: "Líder de Jovens",
-      imagePath: "caminho/da/imagem3.jpg",
-    ),
-    Membro.withID(
-      id: 4,
-      nome: "Taniro Chacon",
-      funcao: "Diácono",
-      imagePath: "caminho/da/imagem4.jpg",
-    ),
-  ];
->>>>>>> 40711bb1f0dc39e8149de06f593153d7e95b2dae
 
   // Método para navegar para a TelaDetalhes
   void _navegarParaTelaDetalhes(Membro membro) {
