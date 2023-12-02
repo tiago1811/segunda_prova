@@ -12,6 +12,9 @@ class TelaAltera extends StatefulWidget {
 
 class _TelaAlteraState extends State<TelaAltera> {
   late TextEditingController _nomeController;
+  late TextEditingController _idadeController;
+  late TextEditingController _emailController;
+  late TextEditingController _estadoCivilController;
   late TextEditingController _funcaoController;
   late TextEditingController _imagePathController;
 
@@ -78,6 +81,9 @@ class _TelaAlteraState extends State<TelaAltera> {
     Membro membroAlterado = Membro(
       id: widget.membro.id,
       nome: _nomeController.text,
+      idade: _idadeController.text,
+      email: _emailController.text
+      estadoCivil: _estadoCivilController.text,
       funcao: _funcaoController.text,
       //imagePath: _imagePathController.text,
     );

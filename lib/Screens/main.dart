@@ -68,7 +68,6 @@ class _TelaHomeState extends State<TelaHome> {
           IconButton(
             icon: Icon(Icons.info),
             onPressed: () {
-              // Navegar para o TelaSobre
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => TelaSobre()),
@@ -77,36 +76,43 @@ class _TelaHomeState extends State<TelaHome> {
           ),
         ],
       ),
-      body: Container(
-        child: ListView.builder(
-          itemCount: _listaMembros.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                // Chamar TelaDetalhes com os dados do membro selecionado ao toque simples
-                _navegarParaTelaDetalhes(_listaMembros[index]);
+      body: FutureBuilder<List<Membro>>(
+        future: _listaMembros,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Erro ao carregar membros'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('Nenhum membro encontrado'));
+          } else {
+            List<Membro> membros = snapshot.data!;
+            return ListView.builder(
+              itemCount: membros.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    _navegarParaTelaDetalhes(membros[index]);
+                  },
+                  onLongPress: () {
+                    _navegarParaTelaAltera(membros[index]);
+                  },
+                  child: Card(
+                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    child: ListTile(
+                      title: Text(membros[index].nome),
+                      subtitle: Text(membros[index].funcao),
+                      leading: CircleAvatar(),
+                    ),
+                  ),
+                );
               },
-              onLongPress: () {
-                // Chamar TelaAltera com os dados do membro selecionado ao toque longo
-                _navegarParaTelaAltera(_listaMembros[index]);
-              },
-              child: Card(
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                child: ListTile(
-                  title: Text(_listaMembros[index].nome),
-                  subtitle: Text(_listaMembros[index].funcao),
-                  leading: CircleAvatar(
-                      //backgroundImage: AssetImage(listaMembros[index].imagePath),
-                      ),
-                ),
-              ),
             );
-          },
-        ),
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navegar para a TelaCadastro
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => TelaCadastro()),
