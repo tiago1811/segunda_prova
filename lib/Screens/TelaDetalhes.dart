@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:segunda_prova/Bd/model.dart';
+import 'package:segunda_prova/domain/membro.dart';
 
 class TelaDetalhes extends StatelessWidget {
   final Membro membro;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:segunda_prova/Bd/model.dart';
+import 'package:segunda_prova/domain/membro.dart';
 
 class TelaAltera extends StatefulWidget {
   final Membro membro;
@@ -22,7 +22,7 @@ class _TelaAlteraState extends State<TelaAltera> {
     // Inicialize os controladores com os valores do membro
     _nomeController = TextEditingController(text: widget.membro.nome);
     _funcaoController = TextEditingController(text: widget.membro.funcao);
-    _imagePathController = TextEditingController(text: widget.membro.imagePath);
+    //_imagePathController = TextEditingController(text: widget.membro.imagePath);
   }
 
   @override
@@ -75,11 +75,11 @@ class _TelaAlteraState extends State<TelaAltera> {
 
   void _alterarMembro(BuildContext context) {
     // Substitua essa lógica pela implementação real de alteração no banco de dados
-    Membro membroAlterado = Membro.withID(
+    Membro membroAlterado = Membro(
       id: widget.membro.id,
       nome: _nomeController.text,
       funcao: _funcaoController.text,
-      imagePath: _imagePathController.text,
+      //imagePath: _imagePathController.text,
     );
 
     // Aqui você deve implementar a lógica para salvar as alterações no banco de dados

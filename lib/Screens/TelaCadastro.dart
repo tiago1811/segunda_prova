@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:segunda_prova/Bd/model.dart';
+import 'package:segunda_prova/domain/membro.dart';
 import 'package:segunda_prova/Screens/main.dart';
 
 class TelaCadastro extends StatelessWidget {
@@ -33,7 +33,7 @@ class TelaCadastro extends StatelessWidget {
                 hintText: "Digite a função",
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text("Caminho da Imagem"),
             TextFormField(
               controller: _imagePathController,
@@ -60,7 +60,7 @@ class TelaCadastro extends StatelessWidget {
     Membro novoMembro = Membro(
       nome: _nomeController.text,
       funcao: _funcaoController.text,
-      imagePath: _imagePathController.text,
+     // imagePath: _imagePathController.text,
     );
 
     // Aqui você deve implementar a lógica para salvar o membro no banco de dados
