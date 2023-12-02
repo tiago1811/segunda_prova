@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:segunda_prova/Bd/model.dart';
 import 'package:segunda_prova/Screens/login.dart';
+import 'package:segunda_prova/Screens/TelaCadastro.dart'; // Importe a TelaCadastro
 
 void main() {
   runApp(MyApp());
@@ -79,19 +80,27 @@ class _TelaHomeState extends State<TelaHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Adiciona um novo membro à lista quando o botão é pressionado
-          setState(() {
-            listaMembros.add(
-              Membro.withID(
-                id: listaMembros.length + 1,
-                nome: "Novo Membro ${listaMembros.length + 1}",
-                funcao: "Função",
-                imagePath: "caminho/da/nova/imagem.jpg",
-              ),
-            );
-          });
+          // Navegar para a TelaCadastro
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TelaCadastro()),
+          );
         },
         child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class TelaCadastro extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Tela de Cadastro"),
+      ),
+      body: Center(
+        child: Text("Conteúdo da Tela de Cadastro"),
       ),
     );
   }
