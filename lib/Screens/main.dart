@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:segunda_prova/Bd/model.dart';
-import 'package:segunda_prova/Screens/login.dart';
-import 'package:segunda_prova/Screens/TelaCadastro.dart'; // Importe a TelaCadastro
+import 'package:segunda_prova/Screens/TelaCadastro.dart';
+import 'package:segunda_prova/Screens/TelaAltera.dart';
+import 'package:segunda_prova/Screens/TelaDetalhes.dart';
+import 'package:segunda_prova/Screens/TelaSobre.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: LoginScreen(),
+      home: TelaHome(),
     );
   }
 }
@@ -52,27 +54,66 @@ class _TelaHomeState extends State<TelaHome> {
     ),
   ];
 
+  // Método para navegar para a TelaDetalhes
+  void _navegarParaTelaDetalhes(Membro membro) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TelaDetalhes(membro: membro),
+      ),
+    );
+  }
+
+  // Método para navegar para a TelaAltera
+  void _navegarParaTelaAltera(Membro membro) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TelaAltera(membro: membro),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("GERENCIAMENTO DE MEMBROS"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.info),
+            onPressed: () {
+              // Navegar para o TelaSobre
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TelaSobre()),
+              );
+            },
+          ),
+        ],
       ),
       body: Container(
         child: ListView.builder(
           itemCount: listaMembros.length,
           itemBuilder: (context, index) {
-            return Card(
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              child: ListTile(
-                title: Text(listaMembros[index].nome),
-                subtitle: Text(listaMembros[index].funcao),
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage(listaMembros[index].imagePath),
+            return GestureDetector(
+              onTap: () {
+                // Chamar TelaDetalhes com os dados do membro selecionado ao toque simples
+                _navegarParaTelaDetalhes(listaMembros[index]);
+              },
+              onLongPress: () {
+                // Chamar TelaAltera com os dados do membro selecionado ao toque longo
+                _navegarParaTelaAltera(listaMembros[index]);
+              },
+              child: Card(
+                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                child: ListTile(
+                  title: Text(listaMembros[index].nome),
+                  subtitle: Text(listaMembros[index].funcao),
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage(listaMembros[index].imagePath),
+                  ),
                 ),
-                onTap: () {
-                  // Adicione a lógica de navegação ou ação ao tocar no card aqui
-                },
               ),
             );
           },
@@ -87,20 +128,6 @@ class _TelaHomeState extends State<TelaHome> {
           );
         },
         child: Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-class TelaCadastro extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Tela de Cadastro"),
-      ),
-      body: Center(
-        child: Text("Conteúdo da Tela de Cadastro"),
       ),
     );
   }

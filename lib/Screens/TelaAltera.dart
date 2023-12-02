@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:segunda_prova/Bd/model.dart';
-import 'package:segunda_prova/Screens/main.dart';
 
-class TelaCadastro extends StatelessWidget {
-  final TextEditingController _nomeController = TextEditingController();
-  final TextEditingController _funcaoController = TextEditingController();
-  final TextEditingController _imagePathController = TextEditingController();
+class TelaAltera extends StatefulWidget {
+  final Membro membro;
+
+  TelaAltera({required this.membro});
+
+  @override
+  _TelaAlteraState createState() => _TelaAlteraState();
+}
+
+class _TelaAlteraState extends State<TelaAltera> {
+  late TextEditingController _nomeController;
+  late TextEditingController _funcaoController;
+  late TextEditingController _imagePathController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Inicialize os controladores com os valores do membro
+    _nomeController = TextEditingController(text: widget.membro.nome);
+    _funcaoController = TextEditingController(text: widget.membro.funcao);
+    _imagePathController = TextEditingController(text: widget.membro.imagePath);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro de Membro"),
+        title: Text("EDITAR DADOS DO MEMBRO"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -44,10 +62,10 @@ class TelaCadastro extends StatelessWidget {
             SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
-                // Lógica de salvar o membro no banco de dados
-                _salvarMembro(context);
+                // Lógica para salvar as alterações no membro
+                _alterarMembro(context);
               },
-              child: Text("Cadastrar Membro"),
+              child: Text("Salvar Alterações"),
             ),
           ],
         ),
@@ -55,27 +73,24 @@ class TelaCadastro extends StatelessWidget {
     );
   }
 
-  void _salvarMembro(BuildContext context) {
-    // Substitua essa lógica pela implementação real de salvamento no banco de dados
-    Membro novoMembro = Membro(
+  void _alterarMembro(BuildContext context) {
+    // Substitua essa lógica pela implementação real de alteração no banco de dados
+    Membro membroAlterado = Membro.withID(
+      id: widget.membro.id,
       nome: _nomeController.text,
       funcao: _funcaoController.text,
       imagePath: _imagePathController.text,
     );
 
-    // Aqui você deve implementar a lógica para salvar o membro no banco de dados
+    // Aqui você deve implementar a lógica para salvar as alterações no banco de dados
 
     // Exibindo SnackBar
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Membro cadastrado com sucesso!'),
+        content: Text('Membro alterado com sucesso!'),
       ),
     );
 
-    // Navegando para a TelaHome após o cadastro
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => TelaHome()),
-    );
+    Navigator.pop(context);
   }
 }
