@@ -20,7 +20,7 @@ class TelaDetalhes extends StatelessWidget {
             _buildText("ID: ${membro.id}"),
             _buildText("Nome: ${membro.nome}"),
             _buildText("Função: ${membro.funcao}"),
-            _buildText("Caminho da Imagem: ${membro.imagePath}"),
+            //_buildText("Caminho da Imagem: ${membro.imagePath}"),
           ],
         ),
       ),
