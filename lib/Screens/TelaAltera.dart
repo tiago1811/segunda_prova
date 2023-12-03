@@ -83,11 +83,7 @@ class _TelaAlteraState extends State<TelaAltera> {
     Membro membroAlterado = Membro(
       id: widget.membro.id,
       nome: _nomeController.text,
-<<<<<<< HEAD
       idade: 0,
-=======
-      idade: _idadeController.text,
->>>>>>> 4b78e9b5b95341a0e7472f324ac41af7e1948131
       email: _emailController.text,
       estadoCivil: widget.membro.estadoCivil,
       funcao: widget.membro.funcao,
