@@ -12,8 +12,11 @@ class TelaCadastro extends StatelessWidget {
   final TextEditingController _imagePathController = TextEditingController();
   final _membroHelper = MembroHelper();
 
+<<<<<<< HEAD
   TelaCadastro({super.key});
 
+=======
+>>>>>>> 4b78e9b5b95341a0e7472f324ac41af7e1948131
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +68,7 @@ class TelaCadastro extends StatelessWidget {
 
   void _salvarMembro(BuildContext context) {
     Membro novoMembro = Membro(
+<<<<<<< HEAD
     nome: _nomeController.text,
     idade: 0,
     email: _emailController.text,
@@ -72,6 +76,11 @@ class TelaCadastro extends StatelessWidget {
     funcao: _funcaoController.text, 
     id: 0,
   );
+=======
+      nome: _nomeController.text,
+      funcao: _funcaoController.text,
+    );
+>>>>>>> 4b78e9b5b95341a0e7472f324ac41af7e1948131
 
     _membroHelper.saveMembro(novoMembro);
 
